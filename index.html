@@ -8,16 +8,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Muzeul Miorita Soveja</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Pagina de start</a></li>
-                <li><a href="about.html">Despre noi</a></li>
-                <li><a href="galerie.html">Galerie de imagini</a></li>
-            </ul>
-        </nav>
-    </header>
+   <!-- Navbar Responsive -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Muzeul Miorita</h1>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Pagina de start</a></li>
+            <li><a href="about.html">Despre noi</a></li>
+            <li><a href="galerie.html">Galerie de imagini</a></li>
+        </ul>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+</header>
+
 
     <section class="hero">
         <div class="hero-text">
@@ -111,7 +120,12 @@
         </div>
     </footer>
     
-
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
     
 </body>
 </html>

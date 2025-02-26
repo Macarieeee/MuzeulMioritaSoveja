@@ -9,32 +9,47 @@
 </head>
 <body>
     <!-- Navbar -->
-    <header>
-        <h1>Muzeul Miorita Soveja</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Pagina de start</a></li>
-                <li><a href="about.html">Despre noi</a></li>
-                <li><a href="galerie.html" class="active">Galerie de imagini</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navbar Responsive -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Muzeul Miorita Soveja</h1>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Pagina de start</a></li>
+            <li><a href="about.html">Despre noi</a></li>
+            <li><a href="galerie.html">Galerie de imagini</a></li>
+        </ul>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+</header>
+
 
     <!-- Sectiunea Galerie -->
     <section class="gallery-section">
         <h2>Galerie de imagini</h2>
         <div class="gallery-grid">
-            <img src="PozaHero1.jpg" alt="Imagine 1">
-            <img src="PozaHero1.jpg" alt="Imagine 2">
-            <img src="PozaHero1.jpg" alt="Imagine 3">
-            <img src="PozaHero1.jpg" alt="Imagine 4">
-            <img src="PozaHero1.jpg" alt="Imagine 5">
-            <img src="PozaHero1.jpg" alt="Imagine 6">
-            <img src="PozaHero1.jpg" alt="Imagine 7">
-            <img src="PozaHero1.jpg" alt="Imagine 8">
-            <img src="PozaHero1.jpg" alt="Imagine 9">
+            <img src="PozaHero1.jpg" alt="Imagine 1" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 2" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 3" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 4" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 5" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 6" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 7" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 8" onclick="openLightbox(this)">
+            <img src="PozaHero1.jpg" alt="Imagine 9" onclick="openLightbox(this)">
         </div>
     </section>
+
+<!-- Lightbox pentru imagini -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Imagine Mare">
+    <span class="close">&times;</span>
+</div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -66,5 +81,38 @@
             <p>&copy; Fundația „SIMION MEHEDINȚI - MIORIȚA”. Toate drepturile rezervate.</p>
         </div>
     </footer>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <script>
+        function openLightbox(image) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            // Preia URL-ul imaginii din galeria mică
+            lightboxImg.src = image.src;
+    
+            // Dacă imaginea nu se încarcă, adaugă un fallback
+            lightboxImg.onerror = function() {
+                lightboxImg.src = "https://via.placeholder.com/800x600?text=Imagine+nu+este+disponibila";
+            };
+    
+            lightbox.style.display = 'flex';
+        }
+    
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            // Golește src-ul imaginii pentru a preveni flash-ul la redeschidere
+            lightboxImg.src = '';
+            lightbox.style.display = 'none';
+        }
+    </script>
+    
+    
 </body>
 </html>
