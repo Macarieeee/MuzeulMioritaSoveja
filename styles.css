@@ -16,6 +16,12 @@ body {
     background-color: #a3b600;
     color: #fff;
     font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo h1 {
@@ -87,6 +93,7 @@ body {
     align-items: center;
     padding: 50px 10%;
     gap: 20px;
+    margin-top: 10vh;
 }
 
 .hero-text {
@@ -115,8 +122,9 @@ body {
 
 .hero-image img {
     border-radius: 20px;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 360px;
+    object-fit: fill;
 }
 
 /* Responsive Styles */
@@ -128,6 +136,10 @@ body {
     
     .hero-text, .hero-image {
         max-width: 100%;
+    }
+
+    .hero-image img{
+        height: 250px;
     }
 
     .hero-text h2 {
@@ -299,6 +311,70 @@ body {
     }
 }
 
+
+/* Sectiune Facebook */
+.facebook-section {
+    background-color: #fff;
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.facebook-section h2 {
+    color: #3d3d3d;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.facebook-section p {
+    color: #6f6f6f;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.facebook-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #1877f2;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.facebook-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.facebook-button:hover {
+    background-color: #145dbf;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .facebook-section h2 {
+        font-size: 28px;
+    }
+
+    .facebook-section p {
+        font-size: 16px;
+    }
+
+    .facebook-button {
+        font-size: 16px;
+    }
+}
+
+
+
 .gallery-section {
     background-color: #f8f8e9;
     padding: 50px 10%;
@@ -467,6 +543,9 @@ body {
     padding: 50px 10%;
     text-align: center;
     background-color: #f8f8e9;
+    margin-top: 10vh;
+    display: flex;
+    gap: 50px;
 }
 
 .about-section h2 {
@@ -478,6 +557,7 @@ body {
 
 .about-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 20px;
     text-align: left;
@@ -485,10 +565,11 @@ body {
 }
 
 .about-content p {
-    max-width: 600px;
+    font-size: 21px;
     color: #6f6f6f;
     line-height: 1.6;
 }
+
 
 .about-image img {
     border-radius: 10px;
@@ -519,7 +600,7 @@ body {
     color: #6f6f6f;
     line-height: 1.6;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 
@@ -555,10 +636,15 @@ body {
     font-size: 18px;
     color: #6f6f6f;
     line-height: 1.6;
+    max-width: 900px;
 }
 
 /* Responsive Styles */
 @media (max-width: 800px) {
+    .about-section {
+        flex-direction: column;
+    }
+
     .about-content {
         flex-direction: column;
         text-align: center;
@@ -594,9 +680,10 @@ body {
     justify-items: center;
 }
 
-.gallery-grid img {
+.gallery-section .gallery-grid img {
     width: 100%;
-    height: auto;
+    height: 280px;
+    object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
