@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discuții și Comentarii</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    #add-post, .post, .comment-section {
+      margin-bottom: 30px;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .post {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .post h3 {
+      margin-top: 0;
+    }
+
+    .comment-section p {
+      background: #f0f0f0;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Adaugă o Discuție</h2>
+  <div id="add-post">
+    <input type="text" id="post-title" placeholder="Titlul postării">
+    <textarea id="post-content" placeholder="Scrie ceva..."></textarea>
+    <button onclick="submitPost()">Adaugă o discuție</button>
+  </div>
+
+  <h2>Toate Discuțiile</h2>
+  <div id="posts-list"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmswBEHLBJI2uHkJek3Gk3YKGbgue3jCs",
+      authDomain: "bloguri-muzeu-miorita.firebaseapp.com",
+      projectId: "bloguri-muzeu-miorita",
+      storageBucket: "bloguri-muzeu-miorita.firebasestorage.app",
+      messagingSenderId: "676493451718",
+      appId: "1:676493451718:web:91d4daf1016ae8222d52c7",
+      measurementId: "G-XGG7EBWH3Z"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.submitPost = async function () {
+      const title = document.getElementById("post-title").value;
+      const content = document.getElementById("post-content").value;
+
+      if (title && content) {
+        await addDoc(collection(db, "posts"), {
+          title,
+          content,
+          timestamp: new Date()
+        });
+        alert("Postare adăugată!");
+        document.getElementById("post-title").value = "";
+        document.getElementById("post-content").value = "";
+        loadPosts();
+      } else {
+        alert("Completează toate câmpurile!");
+      }
+    };
+
+    async function addComment(postId, username, comment) {
+      await addDoc(collection(db, "comments"), {
+        postId,
+        username,
+        comment,
+        timestamp: new Date()
+      });
+      loadPosts();
+    }
+
+    async function getCommentsForPost(postId) {
+      const commentQuery = query(collection(db, "comments"), orderBy("timestamp"));
+      const querySnapshot = await getDocs(commentQuery);
+      const comments = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.postId === postId) {
+          comments.push(data);
+        }
+      });
+      return comments;
+    }
+
+    window.loadPosts = async function () {
+      const postsContainer = document.getElementById("posts-list");
+      postsContainer.innerHTML = "";
+
+      const postQuery = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+      const querySnapshot = await getDocs(postQuery);
+
+      for (const doc of querySnapshot.docs) {
+        const data = doc.data();
+        const postId = doc.id;
+
+        const postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `
+          <h3>${data.title}</h3>
+          <p>${data.content}</p>
+
+          <div class="comment-section">
+            <input type="text" id="username-${postId}" placeholder="Numele tău">
+            <textarea id="comment-${postId}" placeholder="Scrie un comentariu..."></textarea>
+            <button onclick="submitComment('${postId}')">Adaugă comentariu</button>
+            <div id="comments-list-${postId}">Se încarcă comentariile...</div>
+          </div>
+        `;
+
+        postsContainer.appendChild(postDiv);
+
+        const comments = await getCommentsForPost(postId);
+        const commentList = document.getElementById(`comments-list-${postId}`);
+        commentList.innerHTML = "";
+
+        comments.forEach((c) => {
+          const commentItem = document.createElement("p");
+          commentItem.innerHTML = `<strong>${c.username}:</strong> ${c.comment}`;
+          commentList.appendChild(commentItem);
+        });
+      }
+    };
+
+    window.submitComment = async function (postId) {
+      const username = document.getElementById(`username-${postId}`).value;
+      const comment = document.getElementById(`comment-${postId}`).value;
+
+      if (username && comment) {
+        await addComment(postId, username, comment);
+      } else {
+        alert("Completează toate câmpurile!");
+      }
+    };
+
+    window.addEventListener("load", loadPosts);
+  </script>
+</body>
+</html>
