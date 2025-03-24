@@ -777,3 +777,150 @@ body {
         font-size: 30px;
     }
 }
+
+/* Blogs Section */
+/* Stilizare generală */
+
+  
+  /* Containerul comentariilor */
+  #comments-section {
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+  
+  /* Input pentru nume */
+  #username, #comment {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Butonul de trimitere */
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  /* Lista comentariilor */
+  #comments-list {
+    margin-top: 20px;
+  }
+  
+  /* Stil pentru fiecare comentariu */
+  .comment {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .comment strong {
+    color: #333;
+  }
+  
+  p{
+    color: #000;
+  }
+
+  .discutii-container {
+    width: 80vw;
+    height: 80vh;
+    margin: 5vh auto;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .discutii-container h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .adauga-postare, .toate-postarile {
+    margin-bottom: 40px;
+  }
+  
+  .adauga-postare h3,
+  .toate-postarile h3 {
+    margin-bottom: 10px;
+    color: #869500;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #a3b600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  
+  button:hover {
+    background-color: #869500;
+  }
+  
+  .post {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .post h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .comment-section {
+    margin-top: 15px;
+  }
+  
+  .comment-section input,
+  .comment-section textarea {
+    margin-top: 10px;
+  }
+  
+  .comment-section p {
+    background: #efefef;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+#discutii h2{
+    color: #869500;
+}

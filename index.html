@@ -77,6 +77,25 @@
             </div>
         </div>
     </section>
+
+    <!-- Sectiune Discutii -->
+    <section id="discutii" class="discutii-container">
+        <h2>🗣️ Discuții</h2>
+      
+        <div class="adauga-postare">
+          <h3>Adaugă o nouă discuție</h3>
+          <input type="text" id="post-title" placeholder="Titlul postării" />
+          <textarea id="post-content" placeholder="Scrie ceva..."></textarea>
+          <button onclick="submitPost()">💬 Adaugă o discuție</button>
+        </div>
+      
+        <div class="toate-postarile">
+          <h3>Toate Discuțiile</h3>
+          <div id="posts-list"></div>
+        </div>
+      </section>
+      
+
     <!-- Sectiune Invitatie Grup Facebook -->
 <section class="facebook-section">
     <h2>Alătură-te comunității noastre pe Facebook!</h2>
@@ -140,6 +159,6 @@
             navLinks.classList.toggle('active');
         }
     </script>
-    
+    <script type="module" src="myscripts.js"></script>
 </body>
 </html>
