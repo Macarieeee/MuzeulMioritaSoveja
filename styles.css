@@ -924,3 +924,21 @@ body {
 #discutii h2{
     color: #869500;
 }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    text-align: center;
+  }
+  
+  .gallery-item p {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
